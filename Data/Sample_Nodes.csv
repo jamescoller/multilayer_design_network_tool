@@ -1,0 +1,46 @@
+Id,Label,timeset,Layer
+0,Drive,,Function
+1,Map Environment,,Function
+2,Dock,,Function
+3,Navigate Autonomously,,Function
+4,Locate Underwater Beacons,,Function
+5,Hold Station,,Function
+6,Be Safe,,Function
+7,Move Forward,,Task
+8,Turn,,Task
+9,Control Motor Voltage,,Task
+10,Command Motor Voltage,,Task
+11,Determine Vehicle Speed,,Task
+12,Distribute Electricity,,Task
+13,Provide Power,,Task
+14,Allow RC Ops,,Task
+15,Signal Driving Condition,,Task
+16,Transmit Power and Signals,,Task
+17,Water-Tight,,Task
+18,Find Obstacles,,Task
+19,ID Obstacles,,Task
+20,Occupancy Grid,,Task
+21,Feature Map,,Task
+22,Orient Vehicle,,Task
+23,Odometry,,Task
+24,Determine Heading,,Task
+25,Determine Speed over Water,,Task
+26,Determine Position,,Task
+27,Find Dock,,Task
+28,Hold Position,,Task
+29,Sense Dock Edges,,Task
+30,Read Map,,Task
+31,Plan Path,,Task
+32,Avoid Obstacles,,Task
+33,Know Destination,,Task
+34,Listen for Acoustic Pings,,Task
+35,Deploy Listening System,,Task
+36,Triangulate Beacon,,Task
+37,Monitor Environmental Conditions,,Task
+38,Predict Motions,,Task
+39,Emergency Stop,,Task
+40,Drive Remotely,,Task
+41,Remain Stable,,Task
+42,Avoid Obstacles,,Task
+43,Power Cycle,,Task
+44,Maintain Communications,,Task
