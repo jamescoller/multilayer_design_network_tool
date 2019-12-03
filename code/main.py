@@ -1,7 +1,5 @@
 """
-Created on Tue Mar 26 2019
-
-PRADS 2019 Code
+Oceans 2020 Code
 
 @author: jcoller
 """
@@ -13,36 +11,29 @@ from __future__ import division
 # matplotlib.use('TkAgg')
 
 import networkx as nx
-import time
 import graphviz as gv
-import networkx.drawing
-# from networkx.drawing.nx_pydot import grahviz_layout
-# from graphviz import Digraph
-import matplotlib.pyplot as plt
-from networkx.drawing.nx_pydot import graphviz_layout
-import random
-import csv
-# import pylab as plt
-# import random
-# import scipy
+import pandas as pd
+
 import numpy as np
+import collections
 
+from Calculations import *
+from plot_functions import *
+from Read_Nodes import read_node_list
 
-# Setup Base Network
+# Read in the Nodes
+G = read_node_list("Data/Node_List.csv")
 
-#whole = gv.Digraph(comment='Launch and Recovery Infulence Diagram',format ='png',engine = 'dot')
+# Read in the Edges
+G = nx.read_adjlist("Data/Adjacency_Lists/All.txt", create_using=nx.DiGraph())
 
- # Read in as Pandas data frame then read into networkx from that
+# Determine Metrics
+Cn = calc_connectedness(G)
+Id = calc_interdependency(G)
+print(Id)
 
-# Read in Adjacency Lists
-G = nx.Graph()
-G=nx.read_adjlist("Data/Adjacency_Lists/All.csv")
+# Plot Metrics
+plot_connectedness(Cn, G, num_bins = 20)
+plot_interdependency(Id,G,num_bins = 20)
 
-
-G.nodes()
-#G.edges()
-
-
-plt.figure(figsize=(8,8))
-nx.draw_random(G)
-plt.show()
+print(list(G.nodes(data=True)))
