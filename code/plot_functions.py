@@ -22,12 +22,13 @@ def plot_connectedness(dict, graph, num_bins = 10, width_bins = 0.8):
         vals2[i] = vals2[i]*num_nodes
 
     # Plot a histogram of the values
+    plt.figure()
     plt.title("Connectedness Histogram")
     plt.xlabel("Connectedness Rating")
     plt.ylabel("Number of Nodes")
     plt.hist(vals2, bins=num_bins,rwidth=width_bins)
-    plt.savefig('Figures/connectedness_histogram.png')
-    plt.show()
+    # plt.savefig('Figures/example_connectedness_histogram.png')
+    # plt.show()
 
 def plot_interdependency(dict, graph, num_bins = 10, width_bins = 0.8):
 
@@ -42,9 +43,26 @@ def plot_interdependency(dict, graph, num_bins = 10, width_bins = 0.8):
         vals2[i] = vals2[i]*num_nodes
 
     # Plot a histogram of the values
+    plt.figure()
     plt.title("Interdependency Histogram")
     plt.xlabel("Betweenness Centrality")
     plt.ylabel("Number of Nodes")
     plt.hist(vals2, bins=num_bins,rwidth=width_bins)
-    plt.savefig('Figures/interdependency_histogram.png')
-    plt.show()
+    # plt.savefig('Figures/example_interdependency_histogram.png')
+    # plt.show()
+
+def plot_reliability(dict, graph, num_bins = 10, width_bins = 0.8):
+
+    # Get List of Values
+    vals = dict.values()
+    vals2 = list(vals)
+
+
+    # Plot a histogram of the values
+    plt.figure()
+    plt.title("Reliability Histogram")
+    plt.xlabel("Reliability")
+    plt.ylabel("Number of Nodes")
+    plt.hist(vals2, bins=num_bins,rwidth=width_bins)
+    # plt.savefig('Figures/example_reliability_histogram.png')
+    # plt.show()

@@ -6,6 +6,10 @@ import time
 import graphviz as gv
 import pandas as pd
 import numpy as np
+import copy
+import itertools
+import scipy as sp
+import csv
 
 def calc_connectedness(G):
 
@@ -32,3 +36,64 @@ def calc_interdependency(G):
     bc = nx.betweenness_centrality(G,normalized = True)
 
     return bc
+
+def calc_reliability(G):
+    Rn = {}
+    N = G.number_of_nodes()
+
+    for node in G.nodes():
+        # Make a Copy
+        C = G.copy()
+
+        # Find descendants of nodes
+        failed = nx.descendants(C,node)
+
+        # Find Number of failed
+        num_failed = len(failed)
+
+        Rn[node] = N-num_failed
+
+    return Rn
+
+# def calc_reliability(G):
+#     Rn = {}
+#
+#     N = G.number_of_nodes()
+#
+#     A = nx.adjacency_matrix(G) # produces csr sparse matrix
+#     # print(sp.sparse.isspmatrix_csr(A)) # true
+#
+#     # print(A.todense())
+#
+#     # Find Max Depth
+#     # max_depth = nx.algorithms.distance_measures.diameter(G) # wamv Network
+#     # max_depth = nx.dag_longest_path_length(G) # simple network
+#     max_depth = 2
+#     print(max_depth)
+#
+#     # Create matrix to find all connections
+#     C = A
+#     B = A
+#     for r in range (2,max_depth+1):
+#         C = C*A
+#         B += C
+#     B += sp.sparse.identity(B.shape[0]) # ensure it counts itself
+#
+#     # Now, B is a matrix where 1 indicates a connection from i to j
+#     # Within a row i, nodes at col j with 0 exist when node i is removed
+#
+#     row = 0
+#     for node in G.nodes():
+#         rating = 0
+#         for col in range(B.shape[0]):
+#             if B[row,col] < 1:
+#                 rating += 1
+#         Rn[node] = rating
+#         row += 1
+#
+#     print(B.todense())
+#
+#     np.savetxt("A.csv", A.todense(), delimiter=",")
+#     np.savetxt("B.csv", B.todense(), delimiter=",")
+#
+#     return Rn
