@@ -8,6 +8,8 @@ import pandas as pd
 import numpy as np
 import altair as alt
 import matplotlib.pyplot as plt
+import csv
+
 
 def plot_connectedness(dict, graph, num_bins = 10, width_bins = 0.8):
 
@@ -66,3 +68,9 @@ def plot_reliability(dict, graph, num_bins = 10, width_bins = 0.8):
     plt.hist(vals2, bins=num_bins,rwidth=width_bins)
     # plt.savefig('Figures/example_reliability_histogram.png')
     # plt.show()
+
+def save_metric_to_csv(dict,filename):
+    with open(filename, 'w') as f:
+        for node in dict:
+            f.write("%s,%f\n"%(node,dict[node]))
+    return

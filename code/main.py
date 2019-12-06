@@ -43,12 +43,16 @@ G = nx.read_adjlist("Data/Adjacency_Lists/All.txt", create_using=nx.DiGraph())
 Cn = calc_connectedness(G)
 Id = calc_interdependency(G)
 Rn = calc_reliability(G)
-print(Rn)
+
+# Save Metrics to csv
+save_metric_to_csv(Cn,'results/cn.csv')
+save_metric_to_csv(Id,'results/id.csv')
+save_metric_to_csv(Rn,'results/rn.csv')
 
 # Plot Metrics
 plot_connectedness(Cn, G, num_bins = 20)
 plot_interdependency(Id,G,num_bins = 20)
-plot_reliability(Rn,G,num_bins=10)
+plot_reliability(Rn,G,num_bins=20)
 plt.show()
 
 #print(list(G.nodes(data=True)))
