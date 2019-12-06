@@ -20,12 +20,18 @@ import collections
 from Calculations import *
 from plot_functions import *
 from Read_Nodes import read_node_list
+from create_graph import create_network
 
 # Read in the Nodes
 # G = read_node_list("Data/Node_List.csv")
 
 # Read in the Edges
-G = nx.read_adjlist("Data/Adjacency_Lists/All.txt", create_using=nx.DiGraph())
+# G = nx.read_adjlist("Data/Adjacency_Lists/All.txt", create_using=nx.DiGraph())
+
+adjlist = "Data/Adjacency_Lists/All.txt"
+node_list = "Data/Node_List.csv"
+
+G = create_network(adjlist, node_list)
 
 # Simple Example Graph
 # G = nx.DiGraph()
