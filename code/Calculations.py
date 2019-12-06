@@ -2,14 +2,9 @@
 Graph Calculation Functions
 """
 import networkx as nx
-import time
-import graphviz as gv
 import pandas as pd
 import numpy as np
-import copy
-import itertools
 import scipy as sp
-import csv
 
 def calc_connectedness(G):
 

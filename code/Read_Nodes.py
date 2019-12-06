@@ -1,7 +1,6 @@
 """
 Functions to read in a node list from CSV to NetworkX Objects
 """
-
 import pandas as pd
 import networkx as nx
 
