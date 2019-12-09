@@ -40,13 +40,21 @@ def calc_reliability(G):
         # Make a Copy
         C = G.copy()
 
+        R = 0
+
         # Find descendants of nodes
         failed = nx.descendants(C,node)
 
-        # Find Number of failed
-        num_failed = len(failed)
+        # Remove Failed Nodes
+        for failure in failed:
+            failed_node = str(failure)
+            C.remove_node(failed_node)
 
-        Rn[node] = N-num_failed
+        # Count Importance of Ramining nodes
+        for remaining in C.nodes():
+            R += C.nodes[str(remaining)]['importance']
+
+        Rn[node] = R
 
     return Rn
 
