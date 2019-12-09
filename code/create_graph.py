@@ -5,6 +5,7 @@ Function to read in and create NetworkX Graph
 import networkx as nx
 import csv
 import pandas as pd
+import datetime as dt
 
 def create_network(adjacency_list, node_list):
 
@@ -20,6 +21,13 @@ def create_network(adjacency_list, node_list):
     # Iterate over all of the rows of the node list and add the node
     for i,row in nodes.iterrows():
         G.add_node(str(nodes.ID[i]),label = nodes.Label[i], start_date = nodes.StartDate[i], layer = nodes.Layer[i], importance = nodes.Importance[i])
+
+    # Iterate over time set the time struct
+    for t in G.nodes():
+        stored_date = G.nodes[str(t)]['start_date']
+        # print(stored_date)
+        # print(dt.date.fromisoformat(stored_date))
+        G.nodes[str(t)]['start_date'] = dt.date.fromisoformat(stored_date)
 
     # adjlist reads in the nodeids as strings, as does the snippet below, while add_node added them as ints. The solution was to make the add_node make the nodeid a string upon creation so the two could be merged.
 

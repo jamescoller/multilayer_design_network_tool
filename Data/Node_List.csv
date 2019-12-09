@@ -1,121 +1,121 @@
 ﻿ID,Layer,Label,StartDate,Height[z],Importance
-0,Function,Drive,01/06/2018,10,10
-1,Function,Map Environment,19/08/2018,10,7
-2,Function,Dock,20/02/2018,10,3
-3,Function,Navigate Autonomously,19/10/2018,10,5
-4,Function,Locate Underwater Beacons,19/11/2018,10,3
-5,Function,Hold Station,19/11/2018,10,5
-6,Function,Be Safe,19/06/2018,10,10
-7,Task,Move Forward,19/06/2018,7.5,10
-8,Task,Turn,19/06/2018,7.5,10
-9,Task,Control Motor Voltage,19/05/2018,7.5,10
-10,Task,Command Motor Voltage,19/05/2018,7.5,10
-11,Task,Determine Vehicle Speed,19/07/2018,7.5,3
-12,Task,Distribute Electricity,19/05/2018,7.5,10
-13,Task,Provide Power,19/05/2018,7.5,10
-14,Task,Allow RC Ops,19/06/2018,7.5,9
-15,Task,Signal Driving Condition,19/06/2018,7.5,8
-16,Task,Transmit Power and Signals,19/05/2018,7.5,10
-17,Task,Water-Tight,19/05/2018,7.5,8
-18,Task,Find Obstacles,19/08/2018,7.5,6
-19,Task,ID Obstacles,19/10/2018,7.5,5
-20,Task,Occupancy Grid,19/08/2018,7.5,5
-21,Task,Feature Map,19/08/2018,7.5,5
-22,Task,Orient Vehicle,19/08/2018,7.5,7
-23,Task,Odometry,19/07/2018,7.5,7
-24,Task,Determine Heading,19/07/2018,7.5,7
-25,Task,Determine Speed over Water,19/07/2018,7.5,5
-26,Task,Determine Position,19/07/2018,7.5,7
-27,Task,Find Dock,19/10/2018,7.5,3
-28,Task,Hold Position,19/11/2018,7.5,5
-29,Task,Sense Dock Edges,19/09/2018,7.5,3
-30,Task,Read Map,19/08/2018,7.5,5
-31,Task,Plan Path,19/10/2018,7.5,5
-32,Task,Avoid Obstacles,19/10/2018,7.5,5
-33,Task,Know Destination,19/07/2018,7.5,6
-34,Task,Listen for Acoustic Pings,19/11/2018,7.5,3
-35,Task,Deploy Listening System,19/11/2018,7.5,3
-36,Task,Triangulate Beacon,19/11/2018,7.5,3
-37,Task,Monitor Environmental Conditions,19/09/2018,7.5,2
-38,Task,Predict Motions,19/10/2018,7.5,2
-39,Task,Emergency Stop,19/06/2018,7.5,10
-40,Task,Drive Remotely,19/06/2018,7.5,9
-41,Task,Remain Stable,19/06/2018,7.5,10
-43,Task,Power Cycle,19/06/2018,7.5,9
-44,Task,Maintain Communications,19/06/2018,7.5,9
-45,Physical,Battery (P),01/04/2018,0,0
-46,Physical,Battery (S),01/04/2018,0,0
-47,Physical,E-Stop (P-F),01/05/2018,0,0
-48,Physical,E-Stop (P-A),01/12/2018,0,0
-49,Physical,E-Stop (S-F),01/05/2018,0,0
-50,Physical,E-Stop (S-A),01/12/2018,0,0
-51,Physical,E-Stop (R) ,01/06/2018,0,0
-52,Physical,E-Stop Ant,01/06/2018,0,0
-53,Physical,Bow Thruster (P),01/09/2018,0,0
-54,Physical,Bow Thruster (S),01/09/2018,0,0
-55,Physical,Motor (P),01/06/2018,0,0
-56,Physical,Motor (S),01/06/2018,0,0
-57,Physical,LiDAR (A),01/07/2018,0,0
-58,Physical,LiDAR (F),01/07/2018,0,0
-59,Physical,Camera,01/07/2018,0,0
-60,Physical,GPS (A),01/07/2018,0,0
-61,Physical,GPS (F),01/07/2018,0,0
-62,Physical,IMU,01/07/2018,0,0
-63,Physical,Anemometer,01/09/2018,0,0
-64,Physical,PC,01/06/2018,0,0
-65,Physical,RC Ant,01/06/2018,0,0
-66,Physical,Comm Ant,01/06/2018,0,0
-67,Physical,PoE Injector,01/06/2018,0,0
-68,Physical,Network Switch,01/06/2018,0,0
-69,Physical,LiDAR Interface Box (F),01/07/2018,0,0
-70,Physical,LiDAR Interface Box (A),01/07/2018,0,0
-71,Physical,E-Stop Controller,01/05/2018,0,0
-72,Physical,E-Stop Battery,01/05/2018,0,0
-73,Physical,Power Distribution Board (Primary),01/05/2018,0,0
-74,Physical,Power Distribution Board (F),01/05/2018,0,0
-75,Physical,Power Distribution Board (A),01/05/2018,0,0
-76,Physical,Cooling Fan,01/05/2018,0,0
-77,Physical,Hydrophones,01/11/2018,0,0
-78,Information,Battery Info,19/04/2018,2.5,0
-79,Information,LiDAR Scan,19/07/2018,2.5,0
-80,Information,Camera Images,19/07/2018,2.5,0
-81,Information,System State,19/06/2018,2.5,0
-82,Information,Odometry,19/07/2018,2.5,0
-83,Information,Anemometer Reading,19/09/2018,2.5,0
-84,Information,IMU Readings,19/07/2018,2.5,0
-85,Information,SLAM Pose,19/08/2018,2.5,0
-86,Information,SLAM Particles,19/08/2018,2.5,0
-87,Information,Occupancy Grid,19/07/2018,2.5,0
-88,Information,Feature Map,19/09/2018,2.5,0
-89,Information,Motor Commands,19/06/2018,2.5,0
-90,Information,Path Track,19/07/2018,2.5,0
-91,Information,Waypoints,19/07/2018,2.5,0
-92,Information,RC Commands,19/05/2018,2.5,0
-93,Information,System Time,19/05/2018,2.5,0
-94,Information,Hydrophone Readings,19/11/2018,2.5,0
-95,Function,Carry Out Missions,01/12/2018,10,0
-96,Physical,Motor Controller (P),01/06/2018,0,0
-97,Physical,Motor Controller (S),01/06/2018,0,0
-98,Physical,Motor Interface Board,01/06/2018,0,0
-99,Physical,Thruster Interface Board,01/09/2018,0,0
-101,Physical,Light Signal Board,01/06/2018,0,0
-102,Physical,RC Board,01/06/2018,0,0
-100,Physical,Light Signal  ,01/06/2018,0,0
-103,Algorithm,Action Model,01/07/2018,5,0
-104,Algorithm,Mapping,01/07/2018,5,0
-105,Algorithm,Moving Laser Scan,01/07/2018,5,0
-106,Algorithm,Occupancy Grid,01/07/2018,5,0
-107,Algorithm,Particle Filter,01/07/2018,5,0
-108,Algorithm,Sensor Model,01/07/2018,5,0
-109,Algorithm,SLAM Main,01/07/2018,5,0
-110,Algorithm,SLAM,01/07/2018,5,0
-111,Algorithm,Controller,01/07/2018,5,0
-112,Algorithm,LiDAR Driver,01/07/2018,5,0
-113,Algorithm,Time Sync,01/07/2018,5,0
-114,Algorithm,Wifi Driver,01/07/2018,5,0
-115,Algorithm,Path Planning,01/07/2018,5,0
-116,Algorithm,Exploration Task,01/07/2018,5,0
-117,Algorithm,Frontiers,01/07/2018,5,0
-118,Algorithm,Grid Generator,01/07/2018,5,0
-119,Algorithm,Motion Planner,01/07/2018,5,0
-120,Algorithm,Obstacle Distance Grid,01/07/2018,5,0
+0,Function,Drive,2018-06-01,10,10
+1,Function,Map Environment,2018-08-19,10,7
+2,Function,Dock,2018-02-20,10,3
+3,Function,Navigate Autonomously,2018-10-19,10,5
+4,Function,Locate Underwater Beacons,2018-11-19,10,3
+5,Function,Hold Station,2018-11-19,10,5
+6,Function,Be Safe,2018-06-19,10,10
+7,Task,Move Forward,2018-06-19,7.5,10
+8,Task,Turn,2018-06-19,7.5,10
+9,Task,Control Motor Voltage,2018-05-19,7.5,10
+10,Task,Command Motor Voltage,2018-05-19,7.5,10
+11,Task,Determine Vehicle Speed,2018-07-19,7.5,3
+12,Task,Distribute Electricity,2018-05-19,7.5,10
+13,Task,Provide Power,2018-05-19,7.5,10
+14,Task,Allow RC Ops,2018-06-19,7.5,9
+15,Task,Signal Driving Condition,2018-06-19,7.5,8
+16,Task,Transmit Power and Signals,2018-05-19,7.5,10
+17,Task,Water-Tight,2018-05-19,7.5,8
+18,Task,Find Obstacles,2018-08-19,7.5,6
+19,Task,ID Obstacles,2018-10-19,7.5,5
+20,Task,Occupancy Grid,2018-08-19,7.5,5
+21,Task,Feature Map,2018-08-19,7.5,5
+22,Task,Orient Vehicle,2018-08-19,7.5,7
+23,Task,Odometry,2018-07-19,7.5,7
+24,Task,Determine Heading,2018-07-19,7.5,7
+25,Task,Determine Speed over Water,2018-07-19,7.5,5
+26,Task,Determine Position,2018-07-19,7.5,7
+27,Task,Find Dock,2018-10-19,7.5,3
+28,Task,Hold Position,2018-11-19,7.5,5
+29,Task,Sense Dock Edges,2018-09-19,7.5,3
+30,Task,Read Map,2018-08-19,7.5,5
+31,Task,Plan Path,2018-10-19,7.5,5
+32,Task,Avoid Obstacles,2018-10-19,7.5,5
+33,Task,Know Destination,2018-07-19,7.5,6
+34,Task,Listen for Acoustic Pings,2018-11-19,7.5,3
+35,Task,Deploy Listening System,2018-11-19,7.5,3
+36,Task,Triangulate Beacon,2018-11-19,7.5,3
+37,Task,Monitor Environmental Conditions,2018-09-19,7.5,2
+38,Task,Predict Motions,2018-10-19,7.5,2
+39,Task,Emergency Stop,2018-06-19,7.5,10
+40,Task,Drive Remotely,2018-06-19,7.5,9
+41,Task,Remain Stable,2018-06-19,7.5,10
+43,Task,Power Cycle,2018-06-19,7.5,9
+44,Task,Maintain Communications,2018-06-19,7.5,9
+45,Physical,Battery (P),2018-04-01,0,0
+46,Physical,Battery (S),2018-04-01,0,0
+47,Physical,E-Stop (P-F),2018-05-01,0,0
+48,Physical,E-Stop (P-A),2018-12-01,0,0
+49,Physical,E-Stop (S-F),2018-05-01,0,0
+50,Physical,E-Stop (S-A),2018-12-01,0,0
+51,Physical,E-Stop (R) ,2018-06-01,0,0
+52,Physical,E-Stop Ant,2018-06-01,0,0
+53,Physical,Bow Thruster (P),2018-09-01,0,0
+54,Physical,Bow Thruster (S),2018-09-01,0,0
+55,Physical,Motor (P),2018-06-01,0,0
+56,Physical,Motor (S),2018-06-01,0,0
+57,Physical,LiDAR (A),2018-07-01,0,0
+58,Physical,LiDAR (F),2018-07-01,0,0
+59,Physical,Camera,2018-07-01,0,0
+60,Physical,GPS (A),2018-07-01,0,0
+61,Physical,GPS (F),2018-07-01,0,0
+62,Physical,IMU,2018-07-01,0,0
+63,Physical,Anemometer,2018-09-01,0,0
+64,Physical,PC,2018-06-01,0,0
+65,Physical,RC Ant,2018-06-01,0,0
+66,Physical,Comm Ant,2018-06-01,0,0
+67,Physical,PoE Injector,2018-06-01,0,0
+68,Physical,Network Switch,2018-06-01,0,0
+69,Physical,LiDAR Interface Box (F),2018-07-01,0,0
+70,Physical,LiDAR Interface Box (A),2018-07-01,0,0
+71,Physical,E-Stop Controller,2018-05-01,0,0
+72,Physical,E-Stop Battery,2018-05-01,0,0
+73,Physical,Power Distribution Board (Primary),2018-05-01,0,0
+74,Physical,Power Distribution Board (F),2018-05-01,0,0
+75,Physical,Power Distribution Board (A),2018-05-01,0,0
+76,Physical,Cooling Fan,2018-05-01,0,0
+77,Physical,Hydrophones,2018-11-01,0,0
+78,Information,Battery Info,2018-04-19,2.5,0
+79,Information,LiDAR Scan,2018-07-19,2.5,0
+80,Information,Camera Images,2018-07-19,2.5,0
+81,Information,System State,2018-06-19,2.5,0
+82,Information,Odometry,2018-07-19,2.5,0
+83,Information,Anemometer Reading,2018-09-19,2.5,0
+84,Information,IMU Readings,2018-07-19,2.5,0
+85,Information,SLAM Pose,2018-08-19,2.5,0
+86,Information,SLAM Particles,2018-08-19,2.5,0
+87,Information,Occupancy Grid,2018-07-19,2.5,0
+88,Information,Feature Map,2018-09-19,2.5,0
+89,Information,Motor Commands,2018-06-19,2.5,0
+90,Information,Path Track,2018-07-19,2.5,0
+91,Information,Waypoints,2018-07-19,2.5,0
+92,Information,RC Commands,2018-05-19,2.5,0
+93,Information,System Time,2018-05-19,2.5,0
+94,Information,Hydrophone Readings,2018-11-19,2.5,0
+95,Function,Carry Out Missions,2018-12-01,10,0
+96,Physical,Motor Controller (P),2018-06-01,0,0
+97,Physical,Motor Controller (S),2018-06-01,0,0
+98,Physical,Motor Interface Board,2018-06-01,0,0
+99,Physical,Thruster Interface Board,2018-09-01,0,0
+101,Physical,Light Signal Board,2018-06-01,0,0
+102,Physical,RC Board,2018-06-01,0,0
+100,Physical,Light Signal  ,2018-06-01,0,0
+103,Algorithm,Action Model,2018-07-01,5,0
+104,Algorithm,Mapping,2018-07-01,5,0
+105,Algorithm,Moving Laser Scan,2018-07-01,5,0
+106,Algorithm,Occupancy Grid,2018-07-01,5,0
+107,Algorithm,Particle Filter,2018-07-01,5,0
+108,Algorithm,Sensor Model,2018-07-01,5,0
+109,Algorithm,SLAM Main,2018-07-01,5,0
+110,Algorithm,SLAM,2018-07-01,5,0
+111,Algorithm,Controller,2018-07-01,5,0
+112,Algorithm,LiDAR Driver,2018-07-01,5,0
+113,Algorithm,Time Sync,2018-07-01,5,0
+114,Algorithm,Wifi Driver,2018-07-01,5,0
+115,Algorithm,Path Planning,2018-07-01,5,0
+116,Algorithm,Exploration Task,2018-07-01,5,0
+117,Algorithm,Frontiers,2018-07-01,5,0
+118,Algorithm,Grid Generator,2018-07-01,5,0
+119,Algorithm,Motion Planner,2018-07-01,5,0
+120,Algorithm,Obstacle Distance Grid,2018-07-01,5,0
