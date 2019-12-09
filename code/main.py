@@ -36,16 +36,16 @@ G = create_network(adjlist, node_list)
 # plt.show()
 
 # Run over time
-dates = ['2018-01-01','2018-02-01','2018-03-01','2018-04-01', '2018-05-01', '2018-06-01','2018-07-01','2018-08-01','2018-09-01','2018-10-01','2018-11-01','2018-12-01']
-
-summary = pd.DataFrame({'Date':[], 'Cn':[], 'Id':[], 'Rn':[]})
-
-for date in dates:
-    data = run_single_timestep(G,dt.date.fromisoformat(date))
-    summary = pd.concat([summary, data])
-
-summary.to_csv('results/summary_data.csv',index=False)
-
-# plot_interactive_histograms_sm('results/all_data2018-12-01.csv')
+# dates = ['2018-01-01','2018-02-01','2018-03-01','2018-04-01', '2018-05-01', '2018-06-01','2018-07-01','2018-08-01','2018-09-01','2018-10-01','2018-11-01','2018-12-01']
 #
-print(summary)
+# summary = pd.DataFrame({'Date':[], 'Cn':[], 'Id':[], 'Rn':[]})
+#
+# for date in dates:
+#     data = run_single_timestep(G,dt.date.fromisoformat(date))
+#     summary = pd.concat([summary, data])
+#
+# summary.to_csv('results/summary_data.csv',index=False)
+
+plot_interactive_histograms_sm()
+#
+# print(summary)
