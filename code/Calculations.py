@@ -8,9 +8,34 @@ import scipy as sp
 
 def calc_connectedness(G):
 
-    # In and Out Degree are normalized by 1/n
-    in_deg = nx.in_degree_centrality(G) # returns a dict
-    out_deg = nx.out_degree_centrality(G) # returns a dict
+    inter_layer = {}
+    intra_layer = {}
+
+    for i in G.nodes():
+        inter = 0
+        intra = 0
+        layer = G.nodes[str(i)]['layer']
+
+        suc = G.successors(i)
+        pred = G.predecessors(i)
+
+        for n in suc:
+            # Check if the layer is the same
+            if G.nodes[str(n)]['layer'] == G.nodes[str(i)]['layer']:
+                intra += 1
+            else:
+                inter += 1
+
+        for n in pred:
+            # Check if the layer is the same
+            if G.nodes[str(n)]['layer'] == G.nodes[str(i)]['layer']:
+                intra += 1
+            else:
+                inter += 1
+
+        inter_layer[i] = inter
+        intra_layer[i] = intra
+
     nodes = nx.nodes(G)
     n = nx.number_of_nodes(G)
 
@@ -20,8 +45,10 @@ def calc_connectedness(G):
     Cn = {}
 
     for i in nodes:
-        val = in_deg[i]*alpha + out_deg[i]*beta
+        val = intra_layer[i]*alpha + inter_layer[i]*beta
         Cn[i] = val
+        print(i)
+        print(val)
 
     return Cn
 
