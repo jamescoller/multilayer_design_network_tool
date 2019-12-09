@@ -18,17 +18,18 @@ node_list = "Data/Node_List.csv"
 
 G = create_network(adjlist, node_list)
 
-# # Determine Metrics
+# Determine Metrics
 # Cn = calc_connectedness(G)
 # Id = calc_interdependency(G)
 # Rn = calc_reliability(G)
-#
-# # Save Metrics to csv
+
+# Save Metrics to csv
 # save_metric_to_csv(Cn,'results/cn.csv')
 # save_metric_to_csv(Id,'results/id.csv')
 # save_metric_to_csv(Rn,'results/rn.csv')
-#
-# # Plot Metrics
+
+
+# Plot Metrics
 # plot_connectedness(Cn, G, num_bins = 20)
 # plot_interdependency(Id,G,num_bins = 20)
 # plot_reliability(Rn,G,num_bins=20)
@@ -45,5 +46,6 @@ for date in dates:
 
 summary.to_csv('results/summary_data.csv',index=False)
 
-
+# plot_interactive_histograms_sm('results/all_data2018-12-01.csv')
+#
 print(summary)

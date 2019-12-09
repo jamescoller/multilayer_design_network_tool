@@ -4,6 +4,8 @@ Graph Calculation Functions
 import networkx as nx
 import matplotlib.pyplot as plt
 import csv
+import altair as alt
+import pandas as pd
 
 
 def plot_connectedness(dict, graph, num_bins = 10, width_bins = 0.8):
@@ -29,8 +31,8 @@ def plot_interdependency(dict, graph, num_bins = 10, width_bins = 0.8):
     # multiply vals by number of nodes
     num_nodes = nx.number_of_nodes(graph)
 
-    for i in range(len(vals)):
-        vals2[i] = vals2[i]*num_nodes
+    # for i in range(len(vals)):
+    #     vals2[i] = vals2[i]*num_nodes
 
     # Plot a histogram of the values
     plt.figure()
@@ -62,3 +64,13 @@ def save_metric_to_csv(dict,filename):
         for node in dict:
             f.write("%s,%f\n"%(node,dict[node]))
     return
+
+def plot_interactive_histograms_sm(filename):
+    data = pd.read_csv(filename)
+
+    cn = alt.Chart(data).mark_bar().encode(
+        x = alt.X('Cn:Q', bin = alt.Bin(maxbins=20)),
+        y = 'count()'
+    )
+
+    cn.serve()
