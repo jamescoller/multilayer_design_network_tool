@@ -20,12 +20,12 @@ G = create_network(adjlist, node_list)
 
 # Determine Metrics
 # Cn = calc_connectedness(G)
-# Id = calc_interdependency(G)
+Id = calc_interdependency(G)
 # Rn = calc_reliability(G)
 
 # Save Metrics to csv
 # save_metric_to_csv(Cn,'results/cn.csv')
-# save_metric_to_csv(Id,'results/id.csv')
+save_metric_to_csv(Id,'results/id_normalized.csv')
 # save_metric_to_csv(Rn,'results/rn.csv')
 
 
@@ -46,6 +46,7 @@ G = create_network(adjlist, node_list)
 #
 # summary.to_csv('results/summary_data.csv',index=False)
 
-plot_interactive_histograms_sm()
-#
+#plot_interactive_histograms_sm()
+#plot_summary_stats()
+
 # print(summary)

@@ -53,7 +53,7 @@ def calc_connectedness(G):
 def calc_interdependency(G):
 
     # Betweenness Centrality
-    bc = nx.betweenness_centrality(G,normalized = False)
+    bc = nx.betweenness_centrality(G,normalized = True)
 
     return bc
 

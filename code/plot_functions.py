@@ -138,4 +138,60 @@ def plot_interactive_histograms_sm():
 
     chart = alt.hconcat(cn,rn,id)
     #(cn | rn | id)
-    # chart.serve()
+    chart.serve()
+    return
+
+def plot_summary_stats():
+    summary_rev = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/summary_data_rev.csv')
+
+    # Nearest Selection
+    nearest = alt.selection(type='single', nearest=True, on='mouseover', fields = ['Date'], empty='none');
+
+    # Transparent selectors across the chart. This is what tells us
+    # the x-value of the cursor
+    selectors = alt.Chart(summary_rev).mark_point().encode(
+        x='Date:T',
+        opacity=alt.value(0),
+    ).add_selection(
+        nearest
+    )
+
+    # Line on selection
+    vLine = alt.Chart(summary_rev).mark_rule(strokeDash = [5, 5],opacity=0.6).encode(
+        x='Date:T',
+    ).transform_filter(
+        nearest
+    )
+
+    # Data
+    Line = alt.Chart(summary_rev).mark_line().encode(
+        x = alt.X('Date:T',title='Date'),
+        y = alt.Y('Value:Q',title='Mean Metric Value'),
+        color = alt.Color('Metric:N')
+    )
+
+    Val = alt.Chart(summary_rev).mark_text(align='left', baseline = 'top',dx=5, dy=-25, color = 'Black').encode(
+        text = alt.condition(nearest, 'Value:Q', alt.value(''),format = '1.3f'),
+        x = alt.X('Date:T'),
+        y = alt.Y('Value:Q')
+    )
+
+
+    # Draw points on the line, and highlight based on selection
+    Points = alt.Chart(summary_rev).mark_circle().encode(
+        x = alt.X('Date:T'),
+        y = alt.Y('Value:Q'),
+        opacity=alt.condition(nearest, alt.value(1), alt.value(0)),
+        color = alt.Color('Metric:N')
+    )
+
+
+
+
+    viz2 = alt.layer(Line, selectors, vLine, Val, Points).properties(width=700)
+
+    viz2.configure_legend(
+        orient = 'right',
+    )
+
+    viz2.serve()
