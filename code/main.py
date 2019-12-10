@@ -48,5 +48,6 @@ save_metric_to_csv(Id,'results/id_normalized.csv')
 
 #plot_interactive_histograms_sm()
 #plot_summary_stats()
+plot_normalization_comparison()
 
 # print(summary)

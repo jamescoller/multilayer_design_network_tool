@@ -195,3 +195,35 @@ def plot_summary_stats():
     )
 
     viz2.serve()
+
+def plot_normalization_comparison():
+    normalized = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/id_normalized.csv',names = ['NodeID','id'])
+    not_normal = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/id_not_normalized.csv',names = ['NodeID','id'])
+
+    # normalization = pd.DataFrame()
+    # normalization['NodeID'] = normalized['NodeID']
+    # normalization['normal'] = normalized['id']
+    # normalization['not_normal'] = not_normal['id']
+
+    # normalization
+
+    normalized['normal'] = 1
+    not_normal['normal'] = 0
+
+    norm2 = pd.concat([normalized, not_normal])
+
+    radial_input = alt.binding_radio(options=[1,0])
+    norm_choice = alt.selection_single(fields=['normal'], bind=radial_input, name = 'Normalized?')
+
+    norm_comparison = alt.Chart(norm2).mark_bar().encode(
+        x = alt.X('id:Q', bin = alt.Bin(maxbins=20), title = 'Interdependency Rating'),
+        y = alt.Y('count()', title = 'Number of Nodes')
+    ).add_selection(
+        norm_choice
+    ).transform_filter(
+        norm_choice
+    ).transform_filter(
+        alt.datum.NodeID != 64
+    )
+
+    norm_comparison.serve()
