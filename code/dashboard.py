@@ -12,24 +12,39 @@ from dash.dependencies import Input, Output
 import copy
 
 # Import DataFrame
-data1 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-01-01.csv')
-data2 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-02-01.csv')
-data3 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-03-01.csv')
-data4 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-04-01.csv')
-data5 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-05-01.csv')
-data6 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-06-01.csv')
-data7 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-07-01.csv')
-data8 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-08-01.csv')
-data9 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-09-01.csv')
-data10 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-10-01.csv')
-data11 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-11-01.csv')
-data12 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-12-01.csv')
+# data1 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-01-01.csv')
+# data2 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-02-01.csv')
+# data3 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-03-01.csv')
+# data4 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-04-01.csv')
+# data5 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-05-01.csv')
+# data6 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-06-01.csv')
+# data7 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-07-01.csv')
+# data8 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-08-01.csv')
+# data9 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-09-01.csv')
+# data10 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-10-01.csv')
+# data11 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-11-01.csv')
+# data12 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-12-01.csv')
 
-node_info = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/Data/Node_List.csv')
+# node_info = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/Data/Node_List.csv')
 
-time_summary = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/summary_data.csv')
+# time_summary = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/summary_data.csv')
 
-summary_rev = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/summary_data_rev.csv')
+data1 = pd.read_csv('results/all_data2018-01-01.csv')
+data2 = pd.read_csv('results/all_data2018-02-01.csv')
+data3 = pd.read_csv('results/all_data2018-03-01.csv')
+data4 = pd.read_csv('results/all_data2018-04-01.csv')
+data5 = pd.read_csv('results/all_data2018-05-01.csv')
+data6 = pd.read_csv('results/all_data2018-06-01.csv')
+data7 = pd.read_csv('results/all_data2018-07-01.csv')
+data8 = pd.read_csv('results/all_data2018-08-01.csv')
+data9 = pd.read_csv('results/all_data2018-09-01.csv')
+data10 = pd.read_csv('results/all_data2018-10-01.csv')
+data11 = pd.read_csv('results/all_data2018-11-01.csv')
+data12 = pd.read_csv('results/all_data2018-12-01.csv')
+
+node_info = pd.read_csv('Data/Node_List.csv')
+
+time_summary = pd.read_csv('results/summary_data.csv')
 
 data1['month'] = 'January'
 data2['month'] = 'February'
@@ -247,7 +262,7 @@ app.layout = html.Div(
 ])
 
 # Helper Functions
-def filter_df(df, month, layer):
+def filter_df(df, month, layer, norm):
     if not layer:
         filtered = df[
         df["month"].isin([month])
@@ -257,7 +272,27 @@ def filter_df(df, month, layer):
         df["month"].isin([month])
         & df["Layer"].isin([layer])
         ]
+    if norm:
+        filtered = normalize_data(filtered)
     return filtered
+
+def normalize_data(df):
+    df["Cn"] = (df["Cn"]-min(df["Cn"]))/(max(df["Cn"])-min(df["Cn"]))
+    df["Rn"] = (df["Rn"]-min(df["Rn"]))/(max(df["Rn"])-min(df["Rn"]))
+    df["Id"] = (df["Id"]-min(df["Id"]))/(max(df["Id"])-min(df["Id"]))
+    return df
+
+def remake_summary_file(df,norm):
+    sdf = pd.DataFrame({'Date':[], 'Cn':[], 'Id':[], 'Rn':[]})
+    for i in months:
+        dff = filter_df(df, i, '', norm)
+        agg = dff.mean()
+        summary = {'Date': i, 'Cn': [agg['Cn']], 'Id': [agg['Id']], 'Rn': [agg['Rn']]}
+        summary = pd.DataFrame.from_dict(summary)
+        sdf = pd.concat([sdf, summary])
+    return sdf
+
+
 
 # Histograms
 @app.callback(
@@ -269,9 +304,7 @@ def filter_df(df, month, layer):
     ])
 def cn_histogram(selected_month, selected_layer, norm):
     fig = go.Figure()
-    filtered_df = filter_df(all_data, selected_month, selected_layer)
-    if norm:
-        filtered_df["Cn"] = (filtered_df["Cn"]-min(filtered_df["Cn"]))/(max(filtered_df["Cn"])-min(filtered_df["Cn"]))
+    filtered_df = filter_df(all_data, selected_month, selected_layer, norm)
     fig.add_trace(go.Histogram(x=filtered_df["Cn"].tolist(),marker_color='#4e79a7'))
     #,text=filtered_df["Label"].tolist() (from above)
     #cn_hist = px.histogram(filtered_df, x='Cn')
@@ -300,11 +333,12 @@ def cn_histogram(selected_month, selected_layer, norm):
     Output('rn_histogram', 'figure'),
     [
         Input('month_dropdown', 'value'),
-        Input('layer_dropdown', 'value')
+        Input('layer_dropdown', 'value'),
+        Input('normalize_button','value')
     ])
-def rn_histogram(selected_month, selected_layer):
+def rn_histogram(selected_month, selected_layer, norm):
     fig = go.Figure()
-    filtered_df = filter_df(all_data, selected_month, selected_layer)
+    filtered_df = filter_df(all_data, selected_month, selected_layer, norm)
     fig.add_trace(go.Histogram(x=filtered_df["Rn"].tolist(),marker_color='#f28e2b'))
     #cn_hist = px.histogram(filtered_df, x='Cn')
     fig.update_layout(
@@ -332,11 +366,12 @@ def rn_histogram(selected_month, selected_layer):
     Output('id_histogram', 'figure'),
     [
         Input('month_dropdown', 'value'),
-        Input('layer_dropdown', 'value')
+        Input('layer_dropdown', 'value'),
+        Input('normalize_button', 'value')
     ])
-def id_histogram(selected_month, selected_layer):
+def id_histogram(selected_month, selected_layer, norm):
     fig = go.Figure()
-    filtered_df = filter_df(all_data, selected_month, selected_layer)
+    filtered_df = filter_df(all_data, selected_month, selected_layer, norm)
     fig.add_trace(go.Histogram(x=filtered_df["Id"].tolist(),marker_color='#e15759'))
     #cn_hist = px.histogram(filtered_df, x='Cn')
     fig.update_layout(
@@ -370,7 +405,7 @@ def id_histogram(selected_month, selected_layer):
     ])
 def node_count_fig(selected_month, selected_layer):
     # Determine Counts
-    counts = [{'month': i, 'count': filter_df(all_data, i,'').shape[0]} for i in months]
+    counts = [{'month': i, 'count': filter_df(all_data, i,'',0).shape[0]} for i in months]
     df = pd.DataFrame(data = counts)
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=months, y=df["count"].tolist(), mode='lines+markers'))
@@ -402,27 +437,32 @@ def node_count_fig(selected_month, selected_layer):
     Output('avg_metrics_fig', 'figure'),
     [
         Input('month_dropdown', 'value'),
-        Input('layer_dropdown', 'value')
+        Input('layer_dropdown', 'value'),
+        Input('normalize_button', 'value')
     ])
-def avg_metrics_fig(selected_month, selected_layer):
+def avg_metrics_fig(selected_month, selected_layer, norm):
     fig = go.Figure()
+    if norm:
+        df = remake_summary_file(all_data,norm)
+    else:
+        df = time_summary
     fig.add_trace(go.Scatter(
-        x=time_summary["Date"].tolist(),
-        y=time_summary["Cn"].tolist(),
+        x=df["Date"].tolist(),
+        y=df["Cn"].tolist(),
         mode='lines+markers',
         marker_color='#4e79a7',
         name='Cn',
     ))
     fig.add_trace(go.Scatter(
-        x=time_summary["Date"].tolist(),
-        y=time_summary["Rn"].tolist(),
+        x=df["Date"].tolist(),
+        y=df["Rn"].tolist(),
         mode='lines+markers',
         marker_color='#f28e2b',
         name='Rn',
     ))
     fig.add_trace(go.Scatter(
-        x=time_summary["Date"].tolist(),
-        y=time_summary["Id"].tolist(),
+        x=df["Date"].tolist(),
+        y=df["Id"].tolist(),
         mode='lines+markers',
         marker_color='#e15759',
         name='Id',
@@ -455,10 +495,11 @@ def avg_metrics_fig(selected_month, selected_layer):
     Output('cn_ranking', 'figure'),
     [
         Input('month_dropdown', 'value'),
-        Input('layer_dropdown', 'value')
+        Input('layer_dropdown', 'value'),
+        Input('normalize_button', 'value')
     ])
-def cn_ranking(selected_month, selected_layer):
-    df = filter_df(all_data, selected_month, selected_layer)
+def cn_ranking(selected_month, selected_layer, norm):
+    df = filter_df(all_data, selected_month, selected_layer, norm)
     fig = go.Figure()
     fig.add_trace(go.Bar(
         x=df["Label"].tolist(),
@@ -491,10 +532,11 @@ def cn_ranking(selected_month, selected_layer):
     ],
     [
         Input('month_dropdown', 'value'),
-        Input('layer_dropdown', 'value')
+        Input('layer_dropdown', 'value'),
+        Input('normalize_button', 'value')
     ])
-def update_node_text(selected_month, selected_layer):
-    filtered_df = filter_df(all_data, selected_month, selected_layer)
+def update_node_text(selected_month, selected_layer, norm):
+    filtered_df = filter_df(all_data, selected_month, selected_layer, norm)
     agg = filtered_df.mean()
     cn_mean = '%s' % float('%.3g' % agg['Cn'])
     rn_mean = '%s' % float('%.3g' % agg['Rn'])
