@@ -5,6 +5,8 @@ B.csv
 *.docx
 *.pdf
 *.pwpt
+*.xlsx
 Layout.docx
 Layout.pdf
 code/testing.py
+Figures/
