@@ -81,52 +81,11 @@ def filter_df(df, month, layer):
         ]
     return filtered
 
-def node_count_fig():
-    # Determine Counts
-    counts = [{"month": i, "count": filter_df(all_data, i, '').shape[0]} for i in months]
-    # counts = [
-    #     "month": "January", filter_df(all_data, "January", '').shape[0],
-    #     filter_df(all_data, "February", '').shape[0],
-    #     filter_df(all_data, "March", '').shape[0],
-    #     filter_df(all_data, "April", '').shape[0],
-    #     filter_df(all_data, "May", '').shape[0],
-    #     filter_df(all_data, "June", '').shape[0],
-    #     filter_df(all_data, "July", '').shape[0],
-    #     filter_df(all_data, "August", '').shape[0],
-    #     filter_df(all_data, "September", '').shape[0],
-    #     filter_df(all_data, "October", '').shape[0],
-    #     filter_df(all_data, "November", '').shape[0],
-    #     filter_df(all_data, "December", '').shape[0]
-    # ]
-    # Make Figure
-    df = pd.DataFrame(data = counts)
-    # fig = go.Figure()
-    # fig.add_trace(go.Scatter(x=months, y=counts, mode='lines+markers'))
-    # fig.show()
-    fig = px.scatter(df, x='month',y='count')
-    return fig
+norm = 1
 
-def node_count_fig2():
-    # Determine Counts
-    counts = [{'month': i, 'count': filter_df(all_data, i, '').shape[0]} for i in months]
-    df = pd.DataFrame(data = counts)
-    #
-    layout_individual = copy.deepcopy(layout)
-    #
-    data = [
-            dict(
-                type="scatter",
-                mode="lines+markers",
-                name="Gas Produced (mcf)",
-                x=df.month,
-                y=df.count,
-                line=dict(shape="spline", smoothing=2, width=1, color="#fac1b7"),
-                marker=dict(symbol="diamond-open"),
-            )
-    ]
-    layout_individual["title"] = "Something"
-    figure = dict(data = data, layout = layout_individual)
-    return figure
+filtered_df = filter_df(all_data, 'December', '')
 
+if norm:
+    filtered_df["Cn"] = (filtered_df["Cn"]-min(filtered_df["Cn"]))/(max(filtered_df["Cn"])-min(filtered_df["Cn"]))
 
-node_count_fig2().show()
+print(filtered_df)

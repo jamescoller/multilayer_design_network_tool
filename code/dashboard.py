@@ -144,6 +144,19 @@ app.layout = html.Div(
                         options=[{"label": i, "value": i} for i in layers],
                         className="dcc_control",
                         ),
+                        html.P(
+                            "Choose if metrics should be normalized:",
+                            className="control_label",
+                        ),
+                        dcc.RadioItems(
+                        id = 'normalize_button',
+                        options=[
+                            {'label':'Normalize Values','value': 1},
+                            {'label': 'Normal Values', 'value': 0},
+                            ],
+                        value=1,
+                        className="dcc_control",
+                        )
                     ],
                     className="pretty_container four columns",
                     id="cross-filter-options",
@@ -251,11 +264,14 @@ def filter_df(df, month, layer):
     Output('cn_histogram', 'figure'),
     [
         Input('month_dropdown', 'value'),
-        Input('layer_dropdown', 'value')
+        Input('layer_dropdown', 'value'),
+        Input('normalize_button', 'value')
     ])
-def cn_histogram(selected_month, selected_layer):
+def cn_histogram(selected_month, selected_layer, norm):
     fig = go.Figure()
     filtered_df = filter_df(all_data, selected_month, selected_layer)
+    if norm:
+        filtered_df["Cn"] = (filtered_df["Cn"]-min(filtered_df["Cn"]))/(max(filtered_df["Cn"])-min(filtered_df["Cn"]))
     fig.add_trace(go.Histogram(x=filtered_df["Cn"].tolist(),marker_color='#4e79a7'))
     #,text=filtered_df["Label"].tolist() (from above)
     #cn_hist = px.histogram(filtered_df, x='Cn')
