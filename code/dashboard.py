@@ -11,69 +11,12 @@ import dash_html_components as html
 from dash.dependencies import Input, Output
 import copy
 
+from dashboard_help import *
+
 # Import DataFrame
-# data1 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-01-01.csv')
-# data2 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-02-01.csv')
-# data3 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-03-01.csv')
-# data4 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-04-01.csv')
-# data5 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-05-01.csv')
-# data6 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-06-01.csv')
-# data7 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-07-01.csv')
-# data8 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-08-01.csv')
-# data9 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-09-01.csv')
-# data10 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-10-01.csv')
-# data11 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-11-01.csv')
-# data12 = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/all_data2018-12-01.csv')
-
-# node_info = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/Data/Node_List.csv')
-
-# time_summary = pd.read_csv('https://raw.githubusercontent.com/jamescoller/multilayer_design_network_tool/master/results/summary_data.csv')
-
-data1 = pd.read_csv('results/all_data2018-01-01.csv')
-data2 = pd.read_csv('results/all_data2018-02-01.csv')
-data3 = pd.read_csv('results/all_data2018-03-01.csv')
-data4 = pd.read_csv('results/all_data2018-04-01.csv')
-data5 = pd.read_csv('results/all_data2018-05-01.csv')
-data6 = pd.read_csv('results/all_data2018-06-01.csv')
-data7 = pd.read_csv('results/all_data2018-07-01.csv')
-data8 = pd.read_csv('results/all_data2018-08-01.csv')
-data9 = pd.read_csv('results/all_data2018-09-01.csv')
-data10 = pd.read_csv('results/all_data2018-10-01.csv')
-data11 = pd.read_csv('results/all_data2018-11-01.csv')
-data12 = pd.read_csv('results/all_data2018-12-01.csv')
-
-node_info = pd.read_csv('Data/Node_List.csv')
-
 time_summary = pd.read_csv('results/summary_data.csv')
 
-data1['month'] = 'January'
-data2['month'] = 'February'
-data3['month'] = 'March'
-data4['month'] = 'April'
-data5['month'] = 'May'
-data6['month'] = 'June'
-data7['month'] = 'July'
-data8['month'] = 'August'
-data9['month'] = 'September'
-data10['month'] = 'October'
-data11['month'] = 'November'
-data12['month'] = 'December'
-
-data1 = pd.merge(data1, node_info, how = 'inner', left_on = 'NodeID', right_on = 'ID')
-data2 = pd.merge(data2, node_info, how = 'inner', left_on = 'NodeID', right_on = 'ID')
-data3 = pd.merge(data3, node_info, how = 'inner', left_on = 'NodeID', right_on = 'ID')
-data4 = pd.merge(data4, node_info, how = 'inner', left_on = 'NodeID', right_on = 'ID')
-data5 = pd.merge(data5, node_info, how = 'inner', left_on = 'NodeID', right_on = 'ID')
-data6 = pd.merge(data6, node_info, how = 'inner', left_on = 'NodeID', right_on = 'ID')
-data7 = pd.merge(data7, node_info, how = 'inner', left_on = 'NodeID', right_on = 'ID')
-data8 = pd.merge(data8, node_info, how = 'inner', left_on = 'NodeID', right_on = 'ID')
-data9 = pd.merge(data9, node_info, how = 'inner', left_on = 'NodeID', right_on = 'ID')
-data10 = pd.merge(data10, node_info, how = 'inner', left_on = 'NodeID', right_on = 'ID')
-data11 = pd.merge(data11, node_info, how = 'inner', left_on = 'NodeID', right_on = 'ID')
-data12 = pd.merge(data12, node_info, how = 'inner', left_on = 'NodeID', right_on = 'ID')
-
-
-all_data = pd.concat([data1, data2, data3, data4, data5, data6, data7, data8, data9, data10, data11, data12])
+all_data = load_data()
 
 months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September','October','November','December']
 
@@ -88,12 +31,14 @@ app = dash.Dash(__name__)
 # Create the webpage layout
 app.layout = html.Div(
     [
+        # Header
         html.Div(
             [
                 html.Div(
                     [
                         html.Img(
-                            src='https://lh4.googleusercontent.com/SCwcG08iaTmrYsOm0VARUhOTa8obNoui8bBggQ7CvRahrBw5RpFQPwOkAbjAE65RUaoJ8lhtq6ePcGRgfLJX3hNvGqKoDKsTgRuJTjg3H2vDy4_ylg=w170',
+                            # src='https://drive.google.com/file/d/1JMGLKFt-u_z5O-M2GDsntihJ315qVR7G/view?usp=sharing',
+                            src = 'https://lh4.googleusercontent.com/Sbg8KyREFkVD0WHpavEpdf7bvfc8gLdU7b1k-QACq4hni8XRyPt6lIIxqPjJU7_dUojqzDUfrFjXTcB--57eCCo6a-GpGUgXVsdpFUYX3rpZoUtkeA=w170',
                             id="ancr_logo",
                             style={
                                 "height": "100px",
@@ -125,8 +70,13 @@ app.layout = html.Div(
                     [
                         html.A(
                             html.Button("Learn More", id="learn-more-button"),
-                            href="https://sites.google.com/umich.edu/si649-design-complexity/home",
-                        )
+                            # href="https://sites.google.com/umich.edu/si649-design-complexity/home",
+                            href = 'https://drive.google.com/file/d/1ihuatCAwifl7Gs0lt7FskYtSK3v4xpma/view?usp=sharing',
+                        ),
+                        # html.A(
+                        #     html.Button("Github", id="git-button"),
+                        #     href = 'https://github.com/jamescoller/multilayer_design_network_tool/',
+                        # )
                     ],
                     className="one-third column",
                     id="button",
@@ -136,10 +86,32 @@ app.layout = html.Div(
             className="row flex-display",
             style={"margin-bottom": "25px"},
         ),
+        # Filters, Summary, and Overview
         html.Div(
             [
                 html.Div(
                     [
+                        dcc.Markdown('''
+                        ###### Overview
+
+                        This full web page is interactive. You can zoom pan, hover over data points, filter, and discover more insights from the data.
+
+                        The top level of graphs provide a system overview. These graphs represent the trend of the design over time and do not change with the time filters.
+
+                        Below them, the three histograms will change with the filters and options from the panel to the right. They represent the distribution within the design of the various metrics.
+
+                        Additional plots at the bottom allow comparing individual elements of the design and the layers amongst one another.
+                        ''')
+                    ],
+                    className="pretty_container four columns",
+                    id="basic-options",
+                ),
+                html.Div(
+                    [
+                        html.H6(
+                            "Filters and Options",
+                            style={"margin-top": "0px"}
+                        ),
                         html.P(
                             "Filter by element creation date:",
                             className="control_label",
@@ -173,82 +145,85 @@ app.layout = html.Div(
                         className="dcc_control",
                         )
                     ],
-                    className="pretty_container four columns",
+                    className="pretty_container",
                     id="cross-filter-options",
                 ),
                 html.Div(
-                    [
-                        html.Div(
-                            [
-                                html.Div(
-                                    [html.H6(id="number_of_nodes"), html.P("No. of Nodes")],
-                                    id="nodes",
-                                    className="mini_container",
-                                ),
-                                html.Div(
-                                    [html.H6(id="Mean_Cn"), html.P("Mean Cn")],
-                                    id="cn",
-                                    className="mini_container",
-                                ),
-                                html.Div(
-                                    [html.H6(id="Mean_Rn"), html.P("Mean Rn")],
-                                    id="rn",
-                                    className="mini_container",
-                                ),
-                                html.Div(
-                                    [html.H6(id="Mean_Id"), html.P("Mean Id")],
-                                    id="id",
-                                    className="mini_container",
-                                ),
-                            ],
-                            id="info-container",
-                            className="row container-display",
-                        ),
-                        html.Div(
-                            [
-                            dcc.Graph(id="node_count_fig")
-                            ],
-                            id="countGraphContainer",
-                            className="pretty_container",
-                        ),
+                        [
+                            html.Div(
+                                [
+                                    html.Div(
+                                        [html.H6(id="number_of_nodes"), html.P("No. of Nodes")],
+                                        id="nodes",
+                                        className="mini_container",
+                                    ),
+                                    html.Div(
+                                        [html.H6(id="Mean_Cn"), html.P("Mean Cn")],
+                                        id="cn",
+                                        className="mini_container",
+                                    ),
+                                    html.Div(
+                                        [html.H6(id="Mean_Rn"), html.P("Mean Rn")],
+                                        id="rn",
+                                        className="mini_container",
+                                    ),
+                                    html.Div(
+                                        [html.H6(id="Mean_Id"), html.P("Mean Id")],
+                                        id="id",
+                                        className="mini_container",
+                                    ),
+                                ],
+                                id="info-container",
+                                className="row flex-display",
+                            ),
                     ],
                     id="right-column",
-                    className="eight columns",
+                    className="four columns",
                 ),
             ],
             className="row flex-display",
         ),
+        # Node counts
+        html.Div(
+        [
+            html.Div(
+                [
+                dcc.Graph(id="node_count_fig")
+                ],
+                id="countGraphContainer",
+                className="pretty_container three columns",
+            ),
+            html.Div(
+                [dcc.Graph(id="avg_metrics_fig")],
+                className="pretty_container five columns",
+            ),
+        ],
+        className="row flex-display",
+        ),
+        # Histograms
         html.Div(
             [
-                html.Div(
-                    [html.P("")],
-                    className="pretty_container six columns"
-                ),
-                html.Div(
-                [
                     html.Div(
                         [dcc.Graph(id="cn_histogram")],
-                        className="pretty_container",
+                        className="pretty_container five columns",
                     ),
                     html.Div(
                         [dcc.Graph(id="rn_histogram")],
-                        className="pretty_container",
+                        className="pretty_container five columns",
                     ),
                     html.Div(
                         [dcc.Graph(id="id_histogram")],
-                        className="pretty_container",
+                        className="pretty_container five columns",
                     ),
-                ]
-                )
             ],
             className="row flex-display",
         ),
         html.Div(
         [
             html.Div(
-                [dcc.Graph(id="avg_metrics_fig")],
-                className="pretty_container",
-            ),
+                [dcc.Graph(id="radar")],
+                className = "pretty_container",
+            )
         ]
         ),
         html.Div(
@@ -258,7 +233,7 @@ app.layout = html.Div(
                 className="pretty_container",
             ),
         ]
-        )
+        ),
 ])
 
 # Helper Functions
@@ -543,8 +518,99 @@ def update_node_text(selected_month, selected_layer, norm):
     id_mean = '%s' % float('%.3g' % agg['Id'])
     return [filtered_df.shape[0], cn_mean, rn_mean, id_mean]
 
+# Radar Chart
+@app.callback(
+    Output('radar', 'figure'),
+    [
+        Input('month_dropdown', 'value'),
+        Input('layer_dropdown', 'value'),
+        Input('normalize_button', 'value')
+    ])
+def create_radar_chart(selected_month, selected_layer, norm):
+    df = filter_df(all_data, selected_month, selected_layer, norm)
+    fig = go.Figure()
+    categories = ['Adaptability','Connectivity', 'Interconnectedness']
+    # All
+    agg_all = df.mean()
+    fig.add_trace(go.Scatterpolar(
+        r = [agg_all["Rn"], agg_all["Cn"], agg_all["Id"]],
+        theta = categories,
+        fill = 'toself',
+        name = 'All Layers'
+    ))
+    # Function Layer
+    agg_func = df[df['Layer'].isin(['Function'])].mean()
+    fig.add_trace(go.Scatterpolar(
+        r = [agg_func["Rn"], agg_func["Cn"], agg_func["Id"]],
+        theta = categories,
+        fill = 'toself',
+        name = 'Function'
+    ))
+    # Task Layer
+    agg_task = df[df['Layer'].isin(['Task'])].mean()
+    fig.add_trace(go.Scatterpolar(
+        r = [agg_task["Rn"], agg_task["Cn"], agg_task["Id"]],
+        theta = categories,
+        fill = 'toself',
+        name = 'Task'
+    ))
+    # Alg Layer
+    agg_alg = df[df['Layer'].isin(['Algorithm'])].mean()
+    fig.add_trace(go.Scatterpolar(
+        r = [agg_alg["Rn"], agg_alg["Cn"], agg_alg["Id"]],
+        theta = categories,
+        fill = 'toself',
+        name = 'Algorithm'
+    ))
+    # Info Layer
+    agg_info = df[df['Layer'].isin(['Information'])].mean()
+    fig.add_trace(go.Scatterpolar(
+        r = [agg_info["Rn"], agg_info["Cn"], agg_info["Id"]],
+        theta = categories,
+        fill = 'toself',
+        name = 'Information'
+    ))
+    # Physical Layer
+    agg_phys = df[df['Layer'].isin(['Physical'])].mean()
+    fig.add_trace(go.Scatterpolar(
+        r = [agg_phys["Rn"], agg_phys["Cn"], agg_phys["Id"]],
+        theta = categories,
+        fill = 'toself',
+        name = 'Physical'
+    ))
+    fig.update_layout(
+        polar=dict(
+        radialaxis=dict(
+          visible=True,
+          # range=[0, 5]
+        )),
+        showlegend=True
+    )
+    return fig
 
+# Delta Indicators - Works indpendently, can't get it to render in dash
+# @app.callback(
+#     Output("d_nodes", "figure"),
+#     [
+#         Input('month_dropdown', 'value'),
+#         Input('layer_dropdown', 'value'),
+#         Input('normalize_button', 'value')
+#     ])
+# def update_deltas(selected_month, selected_layer, norm):
+#     filtered_df = filter_df(all_data, 'December', '', 0)
+#     fig = go.Figure()
+#     fig.add_trace(go.Indicator(
+#         mode = "number+delta",
+#         value = filtered_df.shape[0],
+#         delta = {"reference": 0, "valueformat": ".0f", 'relative': True},
+#         title = {"text": "Number of Nodes"},
+#     ))
+#     return fig
 
+# Allow to run from main
+def launch_dashboard():
+    app.run_server(debug=True)
 
+# Allow to run locally 
 if __name__ == '__main__':
     app.run_server(debug=True)

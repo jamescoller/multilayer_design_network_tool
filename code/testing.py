@@ -69,7 +69,7 @@ layout = dict(
 )
 
 # Helper Functions
-def filter_df(df, month, layer):
+def filter_df(df, month, layer, norm):
     if not layer:
         filtered = df[
         df["month"].isin([month])
@@ -79,13 +79,23 @@ def filter_df(df, month, layer):
         df["month"].isin([month])
         & df["Layer"].isin([layer])
         ]
+    if norm:
+        filtered = normalize_data(filtered)
     return filtered
 
-norm = 1
+def normalize_data(df):
+    df["Cn"] = (df["Cn"]-min(df["Cn"]))/(max(df["Cn"])-min(df["Cn"]))
+    df["Rn"] = (df["Rn"]-min(df["Rn"]))/(max(df["Rn"])-min(df["Rn"]))
+    df["Id"] = (df["Id"]-min(df["Id"]))/(max(df["Id"])-min(df["Id"]))
+    return df
 
-filtered_df = filter_df(all_data, 'December', '')
-
-if norm:
-    filtered_df["Cn"] = (filtered_df["Cn"]-min(filtered_df["Cn"]))/(max(filtered_df["Cn"])-min(filtered_df["Cn"]))
-
-print(filtered_df)
+filtered_df = filter_df(all_data, 'December', '', 0)
+agg = filtered_df.mean()
+node = go.Figure()
+node.add_trace(go.Indicator(
+    mode = "number+delta",
+    value = filtered_df.shape[0],
+    delta = {"reference": 0, "valueformat": ".0f"},
+    title = {"text": "Number of Nodes"},
+))
+node.show()

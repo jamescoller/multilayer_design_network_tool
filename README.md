@@ -11,9 +11,9 @@
 5. Run the code as shown below.
 
 ## Running the Code
-to run the analysis: `python3 code/main.py`
+to run the analysis and launch the dashboard: `python3 code/main.py`
 
-to run the dashboard: `python3 code/dashboard.py`
+to run the dashboard independently: `python3 code/dashboard.py`
 
 to open the dashboard once it is running, open a web browser and open the page: http://127.0.0.1:8050/
 
