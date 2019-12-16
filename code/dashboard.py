@@ -101,6 +101,8 @@ app.layout = html.Div(
                         Below them, the three histograms will change with the filters and options from the panel to the right. They represent the distribution within the design of the various metrics.
 
                         Additional plots at the bottom allow comparing individual elements of the design and the layers amongst one another.
+
+                        For more information on the metrics, click on the *Learn More* button above.
                         ''')
                     ],
                     className="pretty_container four columns",
@@ -495,6 +497,24 @@ def cn_ranking(selected_month, selected_layer, norm):
         marker_color='#e15759',
     ))
     fig.update_layout(xaxis={'categoryorder':'total descending'})
+    fig.update_layout(
+    yaxis=dict(
+        showgrid=True,
+        gridcolor='grey',
+        zeroline=True,
+        zerolinecolor='grey'
+    ),
+    xaxis=dict(
+        showgrid=False,
+        gridcolor='grey',
+        zeroline=True,
+        zerolinecolor='grey'
+    ),
+    title=dict(
+        text = 'Metric by Node'
+    ),
+    plot_bgcolor='white'
+    )
     return fig
 
 # Text Update
@@ -611,6 +631,6 @@ def create_radar_chart(selected_month, selected_layer, norm):
 def launch_dashboard():
     app.run_server(debug=True)
 
-# Allow to run locally 
+# Allow to run locally
 if __name__ == '__main__':
     app.run_server(debug=True)

@@ -95,7 +95,7 @@ node = go.Figure()
 node.add_trace(go.Indicator(
     mode = "number+delta",
     value = filtered_df.shape[0],
-    delta = {"reference": 0, "valueformat": ".0f"},
+    delta = {"reference": 212, 'relative':True},
     title = {"text": "Number of Nodes"},
 ))
 node.show()
